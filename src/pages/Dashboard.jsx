@@ -52,7 +52,7 @@ const Dashboard = () => {
           </a>
         </Card>
         <Card className="max-w-screen-lg p-6">
-          <div className="text-center font-bold text-lg mb-4">Mis pedidos</div>
+          <div className="text-center font-bold text-lg mb-4 min-w-96">Mis pedidos</div>
           <div className="">
             { orders.length > 0 && orders.map((e, i) => {
                 return(

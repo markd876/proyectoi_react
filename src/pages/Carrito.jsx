@@ -61,7 +61,7 @@ const Carrito = () => {
     <>
       <Header></Header>
       <div className="flex flex-row justify-center align-center mx-auto gap-1.5 mt-5">
-        <Card className="flex align-center justify-center max-w-screen-sm min-h-96 min-w-fit">
+        <Card className="flex align-center justify-center max-w-screen-sm min-h-96 min-w-[640px]">
           <CardBody>
             <h4>Carrito</h4>
             <Table

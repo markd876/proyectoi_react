@@ -28,8 +28,9 @@ const Checkout = () => {
     const {cart} = useCart()
     const calcularTotal = () =>{
         let total = 0
+        console.log(cart)
         cart.map((e)=>{
-          total += e.price * e.cantidad
+          total += e.cantidad * e.precio
         })
         let envio = localStorage.getItem('envio')
         let envioP = JSON.parse(envio)

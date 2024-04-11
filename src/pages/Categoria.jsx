@@ -13,8 +13,10 @@ import Footer from "../components/Footer";
 import { FaCartPlus, FaCartShopping } from "react-icons/fa6";
 import { useCart } from "../hooks/useCart";
 import axios from "../api/axios";
+import { useParams } from "react-router-dom";
 
 const Categoria = () => {
+    const { id } = useParams();
     const {cart, addToCart} = useCart()
     const [featBikes, setfeatBikes] = useState()
     const buyNow = (producto) =>{
@@ -23,8 +25,7 @@ const Categoria = () => {
     }
     useEffect(()=>{
       try {
-        let id = 1
-        axios.get(`/products/${id}`,{
+        axios.get(`/productsid/${id}`,{
             headers: { 'Content-Type': 'application/json' },
             withCredentials: true
           }
@@ -41,23 +42,6 @@ const Categoria = () => {
     <Divider className="my-8"/>
     <h4 className="font-bold text-center text-xl mb-4"></h4>
     <div className="flex flex-row gap-5 mx-auto items-center justify-center flex-wrap max-w-6xl">
-    <Card className="flex flex-col min-w-40 max-h-40">
-          <a href="/dashboard">
-            <h3 className="text-center font-bold mt-2">Mis pedidos</h3>
-          </a>
-          <Divider className="my-2" />
-          <a href="dashboard/configuracion">
-            <h3 className="text-center font-bold">Configuracion</h3>
-          </a>
-          <Divider className="my-2" />
-          <a href="dashboard/perfil">
-            <h3 className="text-center font-bold">Mi perfil</h3>
-          </a>
-          <Divider className="my-2" />
-          <a href="dashboard/ayuda">
-            <h3 className="text-center font-bold mb-4">Ayuda</h3>
-          </a>
-        </Card>
       {
         featBikes?.length > 0 && featBikes?.map((bicicleta, i) =>{
           return(
