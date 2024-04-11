@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from "react";
+import { Routes, Route, useParams, useNavigate } from "react-router-dom";
 import {
   Card,
   CardHeader,
@@ -16,6 +17,7 @@ import axios from "../api/axios";
 const Featured = () => {
 
   const {cart, addToCart} = useCart()
+  const navigate = useNavigate()
   const [featProds, setfeatProds] = useState()
 
   useEffect(()=>{
@@ -32,7 +34,10 @@ const Featured = () => {
       console.error(error)
     }
   },[])
-  
+  const buyNow = (producto) =>{
+    addToCart(producto)
+    navigate('/carrito')
+  }
 
   return (
     <>
@@ -45,23 +50,26 @@ const Featured = () => {
         {
           featProds?.length > 0 && featProds?.map((producto, i) =>{
             return(
-              <a href={'/producto/' + producto.id}>
               <Card className="py-4 max-w-64" key={i}>
               <CardHeader className="pb-0 pt-2 px-4 flex-col ">
                 <div className="text-center min-h-28 text-center">
+                  <a href={'/producto/' + producto.id}>
                 <h4 className="font-bold text-large text-wrap text-center">
-                  <a href={'/producto/' + producto.id}>{producto.nombre}</a>
+                  {producto.nombre}
                   </h4>
+                  </a>
                   <small className="text-default-500 text-center">{producto.marca}</small>
                 </div>
               </CardHeader>
               <CardBody className="overflow-visible py-2">
                 <div className="flex justify-center">
+                <a href={'/producto/' + producto.id}>
                   <Image
                     alt="Foto de producto"
                     className=""
                     src={producto.imagen}
                   />
+                  </a>
                 </div>
               </CardBody>
               <CardFooter>
@@ -71,12 +79,13 @@ const Featured = () => {
                     <p className="font-bold text-large">Añadir al carrito</p>
                   </Button>
                   <Button color="success" startContent={<FaCartShopping />}>
+                    <a href={'/producto/' + producto.id}>
                     <p className="font-bold text-large">Comprar</p>
+                    </a>
                   </Button>
                 </div>
               </CardFooter>
             </Card>
-            </a>  
             )          
           })
         }

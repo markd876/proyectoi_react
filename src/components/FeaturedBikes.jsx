@@ -48,7 +48,7 @@ const Featured = () => {
         {
           featBikes?.length > 0 && featBikes?.map((bicicleta, i) =>{
             return(
-              <React.Fragment>
+              <React.Fragment key={i}>
               
               <Card className="py-4 max-w-64" key={i}>
               <CardHeader className="pb-0 pt-2 px-4 flex-col">
@@ -76,8 +76,10 @@ const Featured = () => {
                   <Button color="primary" startContent={<FaCartPlus />} onClick={() => addToCart(bicicleta)}>
                     <p className="font-bold text-large">Añadir al carrito</p>
                   </Button>
-                  <Button color="success" startContent={<FaCartShopping />} onClick={() => buyNow(producto)}>
+                  <Button color="success" startContent={<FaCartShopping />}>
+                  <a href={'/producto/' + bicicleta.id}>
                     <p className="font-bold text-large">Comprar</p>
+                    </a>
                   </Button>
                 </div>
               </CardFooter>

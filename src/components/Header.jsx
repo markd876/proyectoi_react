@@ -23,17 +23,17 @@ function header() {
       </NavbarBrand>
       <NavbarContent className="hidden sm:flex gap-6" justify="center">
         <NavbarItem>
-          <Link color="foreground" href="#">
+          <Link color="foreground" href="/categoria/1">
           Bicicletas
           </Link>
         </NavbarItem>
         <NavbarItem>
-          <Link color="foreground" href="#">
-            Componentes
+          <Link color="foreground" href="/categoria/2">
+            Productos
           </Link>
         </NavbarItem>
         <NavbarItem>
-          <Link color="foreground" href="#">
+          <Link color="foreground" href="/categoria/3">
             Accesorios
           </Link>
         </NavbarItem>

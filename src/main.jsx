@@ -9,67 +9,45 @@ import Login from "./pages/Login.jsx";
 import Register from "./pages/Register.jsx";
 import Dashboard from "./pages/Dashboard.jsx";
 import Configuracion from "./pages/Configuracion.jsx";
-import Categoria from "./pages/Categoria.jsx"
+import Categoria from "./pages/Categoria.jsx";
+import RequireAuth from './components/RequireAuth.jsx'
 import "./index.css";
 import { NextUIProvider } from "@nextui-org/react";
 import {
-  createBrowserRouter,
-  RouterProvider,
+  BrowserRouter as Router,
+  Routes,
   Route,
-  Link,
+  Navigate,
 } from "react-router-dom";
-import { UserContext, UserContextProvider } from "./context/userContext";
+import { UserContextProvider } from "./context/userContext";
 import { CartProvider } from "./context/cartContext";
+import { useUserContext } from "./context/userContext";
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <App />,
-  },
-  {
-    path: "/admin",
-    element: <Admin />,
-  },
-  {
-    path: "/carrito",
-    element: <Carrito />,
-  },
-  {
-    path: "/producto/:id",
-    element: <Producto />,
-  },
-  {
-    path: "/login",
-    element: <Login />,
-  },
-  {
-    path: "/register",
-    element: <Register />,
-  },
-  {
-    path: "/dashboard",
-    element: <Dashboard />,
-  },
-  {
-    path: "/dashboard/configuracion",
-    element: <Configuracion />,
-  },
-  {
-    path: "/checkout",
-    element: <Checkout />,
-  },
-  {
-    path: "/categoria",
-    element: <Categoria/>
-  }
-]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <NextUIProvider>
     <React.StrictMode>
       <UserContextProvider>
         <CartProvider>
-          <RouterProvider router={router} />
+          <Router>
+          <Routes>
+              <Route path="/" element={<App />} />
+              <Route element={<RequireAuth/>}>
+                <Route path="/admin" element={<Admin />}/>
+              </Route>
+              <Route path="/carrito" element={<Carrito />} />
+              <Route path="/producto/:id" element={<Producto />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route
+                path="/dashboard/configuracion"
+                element={<Configuracion />}
+              />
+              <Route path="/checkout" element={<Checkout />} />
+              <Route path="/categoria/:id" element={<Categoria />} />
+            </Routes>
+          </Router>
         </CartProvider>
       </UserContextProvider>
     </React.StrictMode>

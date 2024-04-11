@@ -24,22 +24,23 @@ function App() {
         {
           
         }
-        <Carousel afterChange={onChange} autoplay>
+        <Carousel afterChange={onChange} autoplay className="">
           <div>
             <img
-              src="./D_NQ_NP_804763-MLA51468815069_09.jpg"
+              src="./573855_vittoria_schlaeuche.jpg"
               alt=""
               className="imgCarousel"
+              width={2000}
             />
           </div>
           <div>
-            <img src="./banner-pirelli_2.jpg" alt="" className="imgCarousel" />
+            <img src="./banner-pirelli_2.jpg" alt="" className="imgCarousel" width={2000}/>
           </div>
           <div>
-            <img src="./wahoo.jpg" alt="" className="imgCarousel" />
+            <img src="./wahoo.jpg" alt="" className="imgCarousel" width={2000}/>
           </div>
           <div>
-            <img src="./liquidacion-total.jpg" alt="" className="imgCarousel" />
+            <img src="./liquidacion-total.jpg" alt="" className="imgCarousel" width={2000}/>
           </div>
         </Carousel>
         <Promos />

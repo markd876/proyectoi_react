@@ -1,5 +1,5 @@
 import axios from '../api/axios'
-import { createContext, useState, useEffect } from 'react'
+import { createContext, useState, useEffect,useContext } from 'react'
 
 export const UserContext = createContext({});
 
@@ -21,3 +21,11 @@ export const UserContextProvider = ({ children }) =>{
         </UserContext.Provider>
     )
 }
+export const useUserContext = () => {
+    const context = useContext(UserContext);
+    console.log(context)
+    if (context === undefined) {
+        throw new Error('useUserContext debe ser utilizado dentro de un UserContextProvider');
+    }
+    return context;
+};
