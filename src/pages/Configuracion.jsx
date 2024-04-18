@@ -1,6 +1,7 @@
 import React from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import MenuDashboard from "../components/MenuDashboard";
 import {
   Card,
   CardHeader,
@@ -15,22 +16,14 @@ import {
   SelectItem
 } from "@nextui-org/react";
 
-const Dashboard = () => {
+const Configuracion = () => {
     
   return (
-    <>
+    <React.Fragment>
       <Header />
       <div className="flex flex-row mx-auto justify-center mt-16 gap-4">
-        <Card className="flex flex-col min-w-40">
-            <a href="/dashboard"><h3 className="text-center font-bold mt-2">Mis pedidos</h3></a>
-          <Divider className="my-2"/>
-            <a href="/dashboard/configuracion"><h3 className="text-center font-bold">Configuracion</h3></a>
-          <Divider className="my-2"/>
-            <a href="/dashboard/perfil"><h3 className="text-center font-bold">Mi perfil</h3></a>
-          <Divider className="my-2"/>
-            <a href="/dashboard/ayuda"><h3 className="text-center font-bold mb-2">Ayuda</h3></a>
-        </Card>
-        <Card className="max-w-screen-lg p-6">
+        <MenuDashboard/>
+        <Card className="max-w-screen-lg p-6 min-w-[500px]">
             <div className="text-center font-bold text-lg mb-4 min-w-80">Configuracion</div>
                 <div className="flex flex-col gap-4">
                     <div className="flex flex-row gap-60">
@@ -55,8 +48,8 @@ const Dashboard = () => {
         </Card>
       </div>
       <Footer />
-    </>
+    </React.Fragment>
   );
 };
 
-export default Dashboard;
+export default Configuracion;
