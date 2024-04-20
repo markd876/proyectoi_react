@@ -14,6 +14,7 @@ import {
 } from "@nextui-org/react";
 import axios from "../api/axios";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import Profile from "./Profile";
 
 const Dashboard = () => {
   const [page, setPage] = useState('dashboard')
@@ -56,6 +57,7 @@ const Dashboard = () => {
   switch(page){
     case 'configuracion': return <Configuracion/>;
     break;
+    case 'perfil': return <Profile/>;
     default: return (
       <>
         <Header />

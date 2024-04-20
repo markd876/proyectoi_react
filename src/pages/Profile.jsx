@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { Routes, Route, useParams, Navigate, useNavigate } from 'react-router-dom';
@@ -21,8 +21,9 @@ import {
   Checkbox
 } from "@nextui-org/react";
 import axios from '../api/axios';
+import MenuDashboard from '../components/MenuDashboard';
 
-const Register = () => {
+const Profile = () => {
   const navigate = useNavigate()
   const [nombre, setNombre] = useState()
   const [apellido, setApellido] = useState()
@@ -32,34 +33,32 @@ const Register = () => {
   const [codP, setCodP] = useState()
   const [email, setEmail] = useState()
   const [password, setPassword] = useState()
-  const handleRegister = () =>{
-    const newUser = {
-      nombre,
-      apellido,
-      provincia,
-      calle,
-      numCasa,
-      codP,
-      email,
-      password
+  useEffect(()=>{
+    try {
+        const response = axios
+        .get("/profile", {
+            headers: { "Content-Type": "application/json" },
+            withCredentials: true,
+          })
+          .then((response) =>{
+            console.log(response.data)
+            setEmail(response.data.email)
+            setNombre(response.data.nombre)
+          })
+    } catch (error) {
+        console.error(error)
     }
-    axios.post(`/register/`,{
-      newUser,
-      headers: { "Content-Type": "application/json" },
-      withCredentials: true,
-    }).then((response) =>{
-      navigate('/login')
-      console.log(response.data)
-    })
-  }
+  },[])
   return (
     <React.Fragment>
     <Header/>
-    <Card className='max-w-screen-md flex mx-auto items-center justify-center mt-4'>
-        <h4 className='font-bold text-xl my-8'>Registro</h4>
+    <div className="flex flex-row mx-auto justify-center mt-16 gap-4">
+    <MenuDashboard/>
+    <Card className="max-w-screen-lg p-6 min-w-[500px]">
+        <h4 className='font-bold text-xl my-8'>Mi perfil</h4>
         <div className='flex flex-col gap-4 min-w-80 mb-4'>
             <div className='flex flex-row gap-2'>
-                <Input label='Nombre' onValueChange={setNombre} isRequired></Input>
+                <Input label='Nombre' onValueChange={setNombre} value={nombre} isRequired></Input>
                 <Input label='Apellido' onValueChange={setApellido} isRequired></Input>
             </div>
             <Select label='Provincia' onSelectionChange={(keys) => setProvincia(keys.anchorKey)} isRequired>
@@ -93,15 +92,16 @@ const Register = () => {
                 <Input type='Number' label='Numero de casa' onValueChange={setNumCasa} isRequired></Input>
                 <Input label='Codigo Postal' onValueChange={setCodP} isRequired></Input>
             </div>
-            <Input type='email' label='Email' className='' onValueChange={setEmail} isRequired ></Input>
+            <Input type='email' label='Email' className='' onValueChange={setEmail} value={email} isRequired ></Input>
             <Input type='password' label='Contraseña' className='' onValueChange={setPassword} isRequired></Input>
             <Input type='password' label='Repetir contraseña' className='' isRequired></Input>
-            <Button color='primary' className='mt-4' onClick={handleRegister} isRequired>Registrarse</Button>
+            <Button color='primary' className='mt-4' isRequired>Editar</Button>
         </div>
     </Card>
+    </div>
     <Footer/>
     </React.Fragment>
   )
 }
 
-export default Register
+export default Profile
