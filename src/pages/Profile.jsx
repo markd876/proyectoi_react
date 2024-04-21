@@ -55,7 +55,7 @@ const Profile = () => {
     <div className="flex flex-row mx-auto justify-center mt-16 gap-4">
     <MenuDashboard/>
     <Card className="max-w-screen-lg p-6 min-w-[500px]">
-        <h4 className='font-bold text-xl my-8'>Mi perfil</h4>
+        <h4 className='font-bold text-xl mb-4'>Mi perfil</h4>
         <div className='flex flex-col gap-4 min-w-80 mb-4'>
             <div className='flex flex-row gap-2'>
                 <Input label='Nombre' onValueChange={setNombre} value={nombre} isRequired></Input>

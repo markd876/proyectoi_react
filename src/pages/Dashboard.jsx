@@ -15,6 +15,7 @@ import {
 import axios from "../api/axios";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import Profile from "./Profile";
+import ProfileHelp from "./ProfileHelp";
 
 const Dashboard = () => {
   const [page, setPage] = useState('dashboard')
@@ -58,6 +59,7 @@ const Dashboard = () => {
     case 'configuracion': return <Configuracion/>;
     break;
     case 'perfil': return <Profile/>;
+    case 'ayuda': return <ProfileHelp/>;
     default: return (
       <>
         <Header />

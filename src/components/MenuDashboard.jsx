@@ -17,6 +17,9 @@ const MenuDashboard = () => {
     const handlePerfilClick = () =>{
       navigate('/dashboard/perfil')
     }
+    const handleAyudaClick = () =>{
+      navigate('/dashboard/ayuda')
+    }
     const handleConfiguracionClick = () =>{
       navigate('/dashboard/configuracion')
     }
@@ -37,9 +40,9 @@ const MenuDashboard = () => {
       <h3 className="text-center font-bold">Mi perfil</h3>
     </div>
     <Divider className="my-2" />
-    <a href="dashboard/ayuda">
-      <h3 className="text-center font-bold mb-4">Ayuda</h3>
-    </a>
+    <div onClick={handleAyudaClick} className="cursor-pointer">
+      <h3 className="text-center font-bold">Ayuda</h3>
+    </div>
   </Card>
   )
 }
